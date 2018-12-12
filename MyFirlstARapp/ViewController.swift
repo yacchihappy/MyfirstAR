@@ -38,6 +38,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let h = Float(max.y - min.y)
         textNode.pivot = SCNMatrix4MakeTranslation(w/2 + min.x, h/2 + min.y, 50)
         
+        
         scene.rootNode.addChildNode(textNode)
         
         // Set the scene to the view
