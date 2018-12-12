@@ -25,6 +25,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a new scene
         let scene = SCNScene(named: "art.scnassets/ship.scn")!
+      
+        sceneView.debugOptions = [SCNDebugOptions.showFeaturePoints]
+        
+        let text = SCNText(string: "Hello", extrusionDepth: 0)
+        text.font = UIFont(name: "San Francisco", size: 0.1 )
+        text.firstMaterial?.diffuse.contents = UIColor.green
+        let textNode = SCNNode(geometry: text)
+        
+        let (min, max) = (textNode.boundingBox)
+        let w = Float(max.x - min.x)
+        let h = Float(max.y - min.y)
+        textNode.pivot = SCNMatrix4MakeTranslation(w/2 + min.x, h/2 + min.y, 50)
+        
+        scene.rootNode.addChildNode(textNode)
         
         // Set the scene to the view
         sceneView.scene = scene
